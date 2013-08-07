@@ -173,6 +173,8 @@ module Nanoc
         checksum_store[obj] = obj.checksum
       end
 
+      last_environment_store.last_environment = site.environment
+
       # Store
       stores.each { |s| s.store }
     end
@@ -373,7 +375,7 @@ module Nanoc
       # Calculate rule memory if we haven’t yet done do
       rules_collection.new_rule_memory_for_rep(rep)
 
-      if !rep.item.forced_outdated? && !outdatedness_checker.outdated?(rep) && compiled_content_cache[rep]
+      if !environment_changed? && !rep.item.forced_outdated? && !outdatedness_checker.outdated?(rep) && compiled_content_cache[rep]
         # Reuse content
         Nanoc::NotificationCenter.post(:cached_content_used, rep)
         rep.content = compiled_content_cache[rep]
@@ -396,6 +398,10 @@ module Nanoc
       rep.forget_progress
       Nanoc::NotificationCenter.post(:compilation_failed, rep, e)
       raise e
+    end
+
+    def environment_changed?
+      last_environment_store.last_environment != site.environment
     end
 
     # Clears the list of dependencies for items that will be recompiled.
@@ -447,6 +453,11 @@ module Nanoc
     end
     memoize :rule_memory_calculator
 
+    def last_environment_store
+      Nanoc::LastEnvironmentStore.new
+    end
+    memoize :last_environment_store
+
     # Returns all stores that can load/store data that can be used for
     # compilation.
     def stores
@@ -454,7 +465,8 @@ module Nanoc
         checksum_store,
         compiled_content_cache,
         dependency_tracker,
-        rule_memory_store
+        rule_memory_store,
+        last_environment_store
       ]
     end
 
