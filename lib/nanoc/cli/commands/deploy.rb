@@ -56,6 +56,11 @@ module Nanoc::CLI::Commands
         raise Nanoc::Errors::GenericTrivial, "The site has no deployment configuration for #{target}."
       end
 
+      # FIXME: environment for deployment should be the same as target,
+      # so disregard whatever is passed to NANOC_ENVIRONMENT
+      # and force the environment
+      ENV['NANOC_ENVIRONMENT'] = target.to_s
+
       # Get deployer
       names = Nanoc::Extra::Deployer.all.keys
       name = config.fetch(:kind) do
@@ -80,6 +85,9 @@ module Nanoc::CLI::Commands
           puts "No issues found. Deploying!"
         end
       end
+
+      compile_runner = Nanoc::CLI::Commands::Compile.new({}, {}, nil, :listener_classes => [])
+      compile_runner.run
 
       # Run
       deployer = deployer_class.new(
