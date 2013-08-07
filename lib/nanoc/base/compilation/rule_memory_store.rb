@@ -8,8 +8,8 @@ module Nanoc
   # @api private
   class RuleMemoryStore < ::Nanoc::Store
 
-    def initialize
-      super('tmp/rule_memory', 1)
+    def initialize(environment)
+      super(environment, 'rule_memory', 1)
 
       @rule_memories = {}
     end

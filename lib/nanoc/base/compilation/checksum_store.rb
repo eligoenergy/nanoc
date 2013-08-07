@@ -8,8 +8,8 @@ module Nanoc
   # @api private
   class ChecksumStore < ::Nanoc::Store
 
-    def initialize
-      super('tmp/checksums', 1)
+    def initialize(environment)
+      super(environment, 'checksums', 1)
 
       @checksums = {}
     end

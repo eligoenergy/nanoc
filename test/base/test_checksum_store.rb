@@ -6,22 +6,22 @@ class Nanoc::ChecksumStoreTest < Nanoc::TestCase
     require 'pstore'
 
     # Create store
-    FileUtils.mkdir_p('tmp')
-    pstore = PStore.new('tmp/checksums')
+    FileUtils.mkdir_p('tmp/test')
+    pstore = PStore.new('tmp/test/checksums')
     pstore.transaction do
       pstore[:data] = { [ :item, '/moo/' ] => 'zomg' }
       pstore[:version] = 1
     end
 
     # Check
-    store = Nanoc::ChecksumStore.new
+    store = Nanoc::ChecksumStore.new(:test)
     store.load
     obj = Nanoc::Item.new('Moo?', {}, '/moo/')
     assert_equal 'zomg', store[obj]
   end
 
   def test_get_with_nonexistant_object
-    store = Nanoc::ChecksumStore.new
+    store = Nanoc::ChecksumStore.new(:test)
     store.load
 
     # Check

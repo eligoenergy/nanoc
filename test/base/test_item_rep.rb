@@ -460,7 +460,7 @@ class Nanoc::ItemRepTest < Nanoc::TestCase
       Nanoc3::ItemRep.new(items[1], :default)
     ]
 
-    dt = Nanoc3::DependencyTracker.new(items)
+    dt = Nanoc3::DependencyTracker.new(:test, items)
     dt.start
     Nanoc3::NotificationCenter.post(:visit_started, items[0])
     item_reps[1].raw_path
@@ -480,7 +480,7 @@ class Nanoc::ItemRepTest < Nanoc::TestCase
       Nanoc3::ItemRep.new(items[1], :default)
     ]
 
-    dt = Nanoc3::DependencyTracker.new(items)
+    dt = Nanoc3::DependencyTracker.new(:test, items)
     dt.start
     Nanoc3::NotificationCenter.post(:visit_started, items[0])
     item_reps[1].path

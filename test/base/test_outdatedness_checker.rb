@@ -30,7 +30,7 @@ class Nanoc::OutdatednessCheckerTest < Nanoc::TestCase
 
     # Delete checksums
     with_site(:name => 'foo') do |site|
-      FileUtils.rm('tmp/checksums')
+      FileUtils.rm("tmp/#{site.environment}/checksums")
     end
 
     # Check

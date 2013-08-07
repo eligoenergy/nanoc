@@ -16,7 +16,7 @@ module Nanoc
   # attribute of item B and vice versa without problems).
   #
   # The dependency tracker remembers the dependency information between runs.
-  # Dependency information is stored in the `tmp/dependencies` file.
+  # Dependency information is stored in the `tmp/<nanoc environment>/dependencies` file.
   #
   # @api private
   class DependencyTracker < ::Nanoc::Store
@@ -33,8 +33,8 @@ module Nanoc
     #
     # @param [Array<Nanoc::Item, Nanoc::Layout>] objects The list of items
     #   and layouts whose dependencies should be managed
-    def initialize(objects)
-      super('tmp/dependencies', 4)
+    def initialize(environment, objects)
+      super(environment, 'dependencies', 4)
 
       @objects = objects
       @graph   = Nanoc::DirectedGraph.new([ nil ] + @objects)

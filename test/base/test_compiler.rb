@@ -160,6 +160,7 @@ class Nanoc::CompilerTest < Nanoc::TestCase
     site.stubs(:config).returns({})
     site.stubs(:items).returns([])
     site.stubs(:layouts).returns([ layout ])
+    site.stubs(:environment).returns(:test)
 
     # Create compiler
     compiler = Nanoc::Compiler.new(site)

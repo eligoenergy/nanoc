@@ -173,6 +173,10 @@ module Nanoc
       @config
     end
 
+    def environment
+      ENV['NANOC_ENVIRONMENT'] ? ENV['NANOC_ENVIRONMENT'].to_sym : :development
+    end
+
     # Fills each item's parent reference and children array with the
     # appropriate items. It is probably not necessary to call this method
     # manually; it will be called when appropriate.

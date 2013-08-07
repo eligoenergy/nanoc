@@ -17,8 +17,8 @@ SKIP - The item was deemed not outdated and was therefore not recompiled
 
 EOS
 
-option :a, :all,   '(ignored)'
-option :f, :force, '(ignored)'
+option :a, :all,    '(ignored)'
+option :f, :force,  '(ignored)'
 
 module Nanoc::CLI::Commands
 

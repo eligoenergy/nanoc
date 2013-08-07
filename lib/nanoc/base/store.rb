@@ -33,8 +33,8 @@ module Nanoc
     # @param [Numeric] version The version number corresponding to the file
     #   format the data is in. When the file format changes, the version
     #   number should be incremented.
-    def initialize(filename, version)
-      @filename = filename
+    def initialize(environment, filename, version)
+      @filename = File.join('tmp', environment.to_s, filename)
       @version  = version
     end
 

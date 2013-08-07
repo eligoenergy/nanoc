@@ -7,7 +7,7 @@ class Nanoc::DependencyTrackerTest < Nanoc::TestCase
     items = [ mock, mock ]
 
     # Create
-    tracker = Nanoc::DependencyTracker.new(items)
+    tracker = Nanoc::DependencyTracker.new(:test, items)
 
     # Verify no dependencies yet
     assert_empty tracker.objects_causing_outdatedness_of(items[0])
@@ -19,7 +19,7 @@ class Nanoc::DependencyTrackerTest < Nanoc::TestCase
     items = [ mock, mock ]
 
     # Create
-    tracker = Nanoc::DependencyTracker.new(items)
+    tracker = Nanoc::DependencyTracker.new(:test, items)
 
     # Record some dependencies
     tracker.record_dependency(items[0], items[1])
@@ -33,7 +33,7 @@ class Nanoc::DependencyTrackerTest < Nanoc::TestCase
     items = [ mock, mock ]
 
     # Create
-    tracker = Nanoc::DependencyTracker.new(items)
+    tracker = Nanoc::DependencyTracker.new(:test, items)
 
     # Record some dependencies
     tracker.record_dependency(items[0], items[0])
@@ -48,7 +48,7 @@ class Nanoc::DependencyTrackerTest < Nanoc::TestCase
     items = [ mock, mock ]
 
     # Create
-    tracker = Nanoc::DependencyTracker.new(items)
+    tracker = Nanoc::DependencyTracker.new(:test, items)
 
     # Record some dependencies
     tracker.record_dependency(items[0], items[1])
@@ -64,7 +64,7 @@ class Nanoc::DependencyTrackerTest < Nanoc::TestCase
     items = [ mock, mock, mock ]
 
     # Create
-    tracker = Nanoc::DependencyTracker.new(items)
+    tracker = Nanoc::DependencyTracker.new(:test, items)
 
     # Record some dependencies
     tracker.record_dependency(items[0], items[1])
@@ -79,7 +79,7 @@ class Nanoc::DependencyTrackerTest < Nanoc::TestCase
     items = [ mock, mock, mock ]
 
     # Create
-    tracker = Nanoc::DependencyTracker.new(items)
+    tracker = Nanoc::DependencyTracker.new(:test, items)
 
     # Record some dependencies
     tracker.record_dependency(items[0], items[1])
@@ -94,7 +94,7 @@ class Nanoc::DependencyTrackerTest < Nanoc::TestCase
     items = [ mock, mock ]
 
     # Create
-    tracker = Nanoc::DependencyTracker.new(items)
+    tracker = Nanoc::DependencyTracker.new(:test, items)
 
     # Start, do something and stop
     tracker.start
@@ -119,7 +119,7 @@ class Nanoc::DependencyTrackerTest < Nanoc::TestCase
     items[3].stubs(:reference).returns([ :item, '/ddd/' ])
 
     # Create
-    tracker = Nanoc::DependencyTracker.new(items)
+    tracker = Nanoc::DependencyTracker.new(:test, items)
 
     # Record some dependencies
     tracker.record_dependency(items[0], items[1])
@@ -131,7 +131,7 @@ class Nanoc::DependencyTrackerTest < Nanoc::TestCase
     assert File.file?(tracker.filename)
 
     # Re-create
-    tracker = Nanoc::DependencyTracker.new(items)
+    tracker = Nanoc::DependencyTracker.new(:test, items)
 
     # Load
     tracker.load_graph
@@ -157,7 +157,7 @@ class Nanoc::DependencyTrackerTest < Nanoc::TestCase
     new_items = [ items[0], items[1], items[2]           ]
 
     # Create
-    tracker = Nanoc::DependencyTracker.new(old_items)
+    tracker = Nanoc::DependencyTracker.new(:test, old_items)
 
     # Record some dependencies
     tracker.record_dependency(old_items[0], old_items[1])
@@ -169,7 +169,7 @@ class Nanoc::DependencyTrackerTest < Nanoc::TestCase
     assert File.file?(tracker.filename)
 
     # Re-create
-    tracker = Nanoc::DependencyTracker.new(new_items)
+    tracker = Nanoc::DependencyTracker.new(:test, new_items)
 
     # Load
     tracker.load_graph
@@ -189,7 +189,7 @@ class Nanoc::DependencyTrackerTest < Nanoc::TestCase
     items[2].stubs(:reference).returns([ :item, '/ccc/' ])
 
     # Create
-    tracker = Nanoc::DependencyTracker.new(items)
+    tracker = Nanoc::DependencyTracker.new(:test, items)
 
     # Record some dependencies
     tracker.record_dependency(items[0], items[1])
@@ -200,7 +200,7 @@ class Nanoc::DependencyTrackerTest < Nanoc::TestCase
     assert File.file?(tracker.filename)
 
     # Re-create
-    tracker = Nanoc::DependencyTracker.new(items)
+    tracker = Nanoc::DependencyTracker.new(:test, items)
 
     # Load
     tracker.load_graph
@@ -219,7 +219,7 @@ class Nanoc::DependencyTrackerTest < Nanoc::TestCase
     items[2].stubs(:reference).returns([ :item, '/ccc/' ])
 
     # Create
-    tracker = Nanoc::DependencyTracker.new(items)
+    tracker = Nanoc::DependencyTracker.new(:test, items)
 
     # Record some dependencies
     tracker.record_dependency(items[0], items[1])
@@ -230,7 +230,7 @@ class Nanoc::DependencyTrackerTest < Nanoc::TestCase
     assert File.file?(tracker.filename)
 
     # Re-create
-    tracker = Nanoc::DependencyTracker.new(items)
+    tracker = Nanoc::DependencyTracker.new(:test, items)
 
     # Load
     tracker.load_graph
@@ -245,7 +245,7 @@ class Nanoc::DependencyTrackerTest < Nanoc::TestCase
     items = [ mock, mock, mock ]
 
     # Create
-    tracker = Nanoc::DependencyTracker.new(items)
+    tracker = Nanoc::DependencyTracker.new(:test, items)
 
     # Record some dependencies
     tracker.record_dependency(items[0], items[1])

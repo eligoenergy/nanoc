@@ -8,8 +8,9 @@ module Nanoc
   # @api private
   class CompiledContentCache < ::Nanoc::Store
 
-    def initialize
-      super('tmp/compiled_content', 1)
+    # @param [Nanoc::Site] site The site where this store belongs to
+    def initialize(environment)
+      super(environment, 'compiled_content', 1)
 
       @cache = {}
     end
