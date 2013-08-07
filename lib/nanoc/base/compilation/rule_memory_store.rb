@@ -8,12 +8,8 @@ module Nanoc
   # @api private
   class RuleMemoryStore < ::Nanoc::Store
 
-    # @option params [Nanoc::Site] site The site where this rule memory store
-    #   belongs to
-    def initialize(params={})
+    def initialize
       super('tmp/rule_memory', 1)
-
-      @site = params[:site] if params.has_key?(:site)
 
       @rule_memories = {}
     end

@@ -431,13 +431,13 @@ module Nanoc
 
     # @return [ChecksumStore] The checksum store
     def checksum_store
-      Nanoc::ChecksumStore.new(:site => @site)
+      Nanoc::ChecksumStore.new
     end
     memoize :checksum_store
 
     # @return [RuleMemoryStore] The rule memory store
     def rule_memory_store
-      Nanoc::RuleMemoryStore.new(:site => @site)
+      Nanoc::RuleMemoryStore.new
     end
     memoize :rule_memory_store
 
