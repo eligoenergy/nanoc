@@ -127,3 +127,10 @@ may be interested in the development dependencies:
 ## Contact
 
 You can reach me at <denis.defreyne@stoneship.org>.
+
+## Environments
+
+To use Rails-alike production/staging/development/test environments:
+* compile with "NANOC_ENVIRONMENT=env nanoc compile"
+* deploy as usually "nanoc deploy --target=env" (deployment targets must match with your environments)
+* in the content check for site.environment variable
