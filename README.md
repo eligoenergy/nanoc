@@ -134,3 +134,20 @@ To use Rails-alike production/staging/development/test environments:
 * compile with "NANOC_ENVIRONMENT=env nanoc compile"
 * deploy as usually "nanoc deploy --target=env" (deployment targets must match with your environments)
 * in the content check for site.environment variable
+
+Also you can have environment-specific config in nanoc.yaml, for example:
+```
+environments:
+  development:
+    ga: false
+  staging:
+    ga: true
+    ga_account: UA_STAGING
+  production:
+    ga: true
+    ga_account: UA_PRODUCTION
+```
+Then you can use site.environment_config in the content to read the current configuration:
+```
+site.environment_config[:ga_account]
+```
